@@ -23,6 +23,10 @@ shadowJar {
     manifest {
         attributes 'Main-Class': 'org.junit.platform.console.ConsoleLauncher'
     }
+
+    // Include both main and test classes in the Shadow JAR
+    from sourceSets.main.output
+    from sourceSets.test.output
 }
 
 test {

@@ -4,3 +4,4 @@ create a java unit test that read a sample file and pass if content of file cont
 # Commands
 
 ## ./gradlew shadowJar
+## java -jar build/libs/junit_from_shell-all.jar  --select-package=org.example  --fail-if-no-tests -reports-dir=test_results
