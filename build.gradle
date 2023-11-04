@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-console-standalone:X.Y.Z'
 }
 
 application {
@@ -22,9 +23,6 @@ shadowJar {
     manifest {
         attributes 'Main-Class': 'org.junit.platform.console.ConsoleLauncher'
     }
-
-    // Include the JUnit Platform Console Launcher JAR from the 'lib' directory
-    from 'lib/junit-platform-console-standalone-X.Y.Z.jar'
 }
 
 test {
