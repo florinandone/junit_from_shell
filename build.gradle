@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'distribution'
 }
 
 repositories {
@@ -8,6 +10,10 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.0'
+}
+
+application {
+    mainClassName = 'MyFileReaderTest' // Set the main class for your tests
 }
 
 test {
@@ -21,7 +27,15 @@ tasks.withType(Test) {
 }
 
 jar {
-    from sourceSets.main.output
     archiveBaseName = 'my-java-project'
     archiveVersion = '1.0'
+    from sourceSets.main.output
+}
+
+distributions {
+    main {
+        contents {
+            from tasks.jar
+        }
+    }
 }
