@@ -1,10 +1,17 @@
 package org.example;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class MyFileReaderTest {
+
+    @BeforeAll
+    public static void beforeAll(){
+        ResourceCopier.copyResourcesIfNotExists();
+    }
     @Test
     public void testFileContainsString() {
         MyFileReader fileReader = new MyFileReader();

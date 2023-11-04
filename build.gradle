@@ -27,6 +27,8 @@ shadowJar {
     // Include both main and test classes in the Shadow JAR
     from sourceSets.main.output
     from sourceSets.test.output
+     // Include the sample file from the resources directory
+    from sourceSets.main.resources
 }
 
 test {
