@@ -27,7 +27,7 @@ tasks.withType(Test) {
 }
 
 jar {
-    archiveBaseName = 'my-java-project'
+    archiveBaseName = 'junit_from_shell'
     archiveVersion = '1.0'
     from sourceSets.main.output
 }
