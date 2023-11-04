@@ -5,15 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class ResourceCopier {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException{
         copyResourcesIfNotExists();
     }
 
-    public static void copyResourcesIfNotExists() {
+    public static void copyResourcesIfNotExists() throws IOException, URISyntaxException{
         String sourceDirectory = "resources/config";
         String destinationDirectory = "config";
 
@@ -22,13 +23,13 @@ public class ResourceCopier {
         }
     }
 
-    public static boolean destinationDirectoryExists(String destinationDir) {
+    public static boolean destinationDirectoryExists(String destinationDir) throws IOException, URISyntaxException{
         File destination = new File(destinationDir);
         return destination.exists() && destination.isDirectory();
     }
 
-    public static void copyResources(String sourceDir, String destinationDir) {
-        try {
+    public static void copyResources(String sourceDir, String destinationDir)throws IOException, URISyntaxException{
+       
             File source = new File(Objects.requireNonNull(ResourceCopier.class.getClassLoader().getResource(sourceDir)).toURI());
             File destination = new File(destinationDir);
 
@@ -45,9 +46,7 @@ public class ResourceCopier {
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       
     }
 
     public static void copyFile(File sourceFile, File destFile) throws IOException {

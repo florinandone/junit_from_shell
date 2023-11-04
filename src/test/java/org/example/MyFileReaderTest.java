@@ -3,13 +3,16 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class MyFileReaderTest {
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() throws IOException, URISyntaxException{
         ResourceCopier.copyResourcesIfNotExists();
     }
     @Test
