@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'distribution'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
 repositories {
@@ -13,29 +13,20 @@ dependencies {
 }
 
 application {
-    mainClassName = 'MyFileReaderTest' // Set the main class for your tests
+    mainClassName = 'org.junit.platform.console.ConsoleLauncher'
+}
+
+shadowJar {
+    archiveClassifier.set('all')
+    mergeServiceFiles()
+    manifest {
+        attributes 'Main-Class': 'org.junit.platform.console.ConsoleLauncher'
+    }
+
+    // Include the JUnit Platform Console Launcher JAR from the 'lib' directory
+    from 'lib/junit-platform-console-standalone-X.Y.Z.jar'
 }
 
 test {
     useJUnitPlatform()
-}
-
-tasks.withType(Test) {
-    testLogging {
-        events "passed", "skipped", "failed"
-    }
-}
-
-jar {
-    archiveBaseName = 'junit_from_shell'
-    archiveVersion = '1.0'
-    from sourceSets.main.output
-}
-
-distributions {
-    main {
-        contents {
-            from tasks.jar
-        }
-    }
 }
