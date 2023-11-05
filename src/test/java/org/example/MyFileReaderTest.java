@@ -1,24 +1,17 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 public class MyFileReaderTest {
 
-    @BeforeAll
-    public static void beforeAll() throws IOException, URISyntaxException{
-        ResourceCopier.copyResourcesIfNotExists();
-    }
-    @Test
+      @Test
     public void testFileContainsString() {
         MyFileReader fileReader = new MyFileReader();
-        String filePath = "config/sample.txt"; // Adjust the path if needed
+        String filePath = "build\\resources\\main\\config\\sample.txt"; // Adjust the path if needed
         String targetString = "This is a sample file with abc in it.";
         boolean result = fileReader.doesFileContainString(filePath, targetString);
         assertTrue(result);
