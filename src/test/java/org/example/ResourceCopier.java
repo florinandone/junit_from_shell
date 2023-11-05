@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class ResourceCopier {
@@ -15,7 +18,7 @@ public class ResourceCopier {
     }
 
     public static void copyResourcesIfNotExists() throws IOException, URISyntaxException{
-        String sourceDirectory = "resources/config";
+        String sourceDirectory = "config";
         String destinationDirectory = "config";
 
         if (!destinationDirectoryExists(destinationDirectory)) {
@@ -30,7 +33,8 @@ public class ResourceCopier {
 
     public static void copyResources(String sourceDir, String destinationDir)throws IOException, URISyntaxException{
        
-            File source = new File(Objects.requireNonNull(ResourceCopier.class.getClassLoader().getResource(sourceDir)).toURI());
+            URL resourceURL = Objects.requireNonNull(ResourceCopier.class.getClassLoader().getResource(sourceDir));
+            File source = new File(resourceURL.toURI());
             File destination = new File(destinationDir);
 
             if (source.isDirectory()) {
@@ -50,14 +54,6 @@ public class ResourceCopier {
     }
 
     public static void copyFile(File sourceFile, File destFile) throws IOException {
-        try (InputStream in = ResourceCopier.class.getClassLoader().getResourceAsStream(sourceFile.getPath());
-             OutputStream out = new FileOutputStream(destFile)) {
-
-            byte[] buffer = new byte[8192];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-            }
-        }
+        Files.copy(Paths.get(sourceFile.getPath()), Paths.get(destFile.getPath()));
     }
 }

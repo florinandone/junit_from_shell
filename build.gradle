@@ -17,6 +17,14 @@ application {
     mainClassName = 'org.junit.platform.console.ConsoleLauncher'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
 shadowJar {
     archiveClassifier.set('all')
     mergeServiceFiles()

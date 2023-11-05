@@ -18,8 +18,8 @@ public class MyFileReaderTest {
     @Test
     public void testFileContainsString() {
         MyFileReader fileReader = new MyFileReader();
-        String filePath = "sample.txt"; // Adjust the path if needed
-        String targetString = "abc";
+        String filePath = "config/sample.txt"; // Adjust the path if needed
+        String targetString = "This is a sample file with abc in it.";
         boolean result = fileReader.doesFileContainString(filePath, targetString);
         assertTrue(result);
     }
